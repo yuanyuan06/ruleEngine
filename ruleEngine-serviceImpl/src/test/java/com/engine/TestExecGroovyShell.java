@@ -47,7 +47,7 @@ public class TestExecGroovyShell {
         groovy.eval(getScriptFromSource(resource));
         Rule rule = new Rule();
         rule.setDocNum("code");
-        groovy.invokeFunction("sayHelo", rule);
+        ((Invocable)groovy).invokeFunction("sayHelo", rule);
 
 
 
@@ -56,7 +56,7 @@ public class TestExecGroovyShell {
         groovy.eval(getScriptFromSource(resource1));
         Rule entity1 = new Rule();
         entity1.setDocNum("code");
-        ((Invocable) groovy).invokeFunction("sayHaHa", entity1);
+        ((Invocable) ((Invocable)groovy)).invokeFunction("sayHaHa", entity1);
 
         System.out.println("end");
     }
