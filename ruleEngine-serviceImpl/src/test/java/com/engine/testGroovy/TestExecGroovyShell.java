@@ -1,6 +1,9 @@
 package com.engine.testGroovy;
 
+import com.alibaba.fastjson.JSON;
 import com.engine.entity.RuleConfig;
+import groovy.lang.GroovyShell;
+import groovy.lang.Script;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.Resource;
@@ -65,6 +68,4 @@ public class TestExecGroovyShell {
     public void te(){
         System.out.println(Integer.MAX_VALUE);
     }
-
-
 }
