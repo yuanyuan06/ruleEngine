@@ -7,21 +7,22 @@ import java.util.Date;
 /**
  * 任务
  */
-public class Rule extends BaseEntity {
+public class RuleConfig extends BaseEntity {
 
     private static final long serialVersionUID = 4861419277164881114L;
 
-    private Long id;                                   //主键
-    private String docNum;                             //编码
-    private Integer level;                             //等级
-    private Integer type;                              //类型
-    private String decription;                         //描述
-    private Date createTime;                           //创建时间
-    private Long createUser;                           //创建人
-    private Long version;                              //版本号
-    private Date lastModifyTime;                       //最后修改时间
-    private Long lastModifyUser;                       //最后修改人
-
+    private Long id;
+    private String docNum;
+    private Integer priority;
+    private Integer module;
+    private Integer stage;
+    private String script;
+    private String decription;
+    private Date createTime;
+    private Long createUser;
+    private Long version;
+    private Date lastModifyTime;
+    private Long lastModifyUser;
 
     public Long getId() {
         return id;
@@ -39,20 +40,36 @@ public class Rule extends BaseEntity {
         this.docNum = docNum;
     }
 
-    public Integer getLevel() {
-        return level;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getModule() {
+        return module;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setModule(Integer module) {
+        this.module = module;
+    }
+
+    public Integer getStage() {
+        return stage;
+    }
+
+    public void setStage(Integer stage) {
+        this.stage = stage;
+    }
+
+    public String getScript() {
+        return script;
+    }
+
+    public void setScript(String script) {
+        this.script = script;
     }
 
     public String getDecription() {

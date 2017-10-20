@@ -9,8 +9,10 @@
 
     <context:annotation-config/>
 
-    <context:component-scan base-package="com.engine.ao,com.engine.service" />
+    <context:component-scan base-package="com.engine.service" />
 
+    <bean id="groovyEngine" class="org.codehaus.groovy.jsr223.GroovyScriptEngineImpl" lazy-init="true" />
+    <bean id="resourcePatternResolver" class="org.springframework.core.io.support.PathMatchingResourcePatternResolver" lazy-init="true" />
 
     <import resource="../spring-dubbo-provider.xml"/>
 

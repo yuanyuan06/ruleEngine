@@ -19,7 +19,5 @@ public class DemoAoImpl implements  DemoAo {
 
         logger.error("hello come in ao");
         demoService.demoMethod();
-
-
     }
 }

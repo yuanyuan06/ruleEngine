@@ -1,6 +1,6 @@
-package com.engine;
+package com.engine.testGroovy;
 
-import com.engine.entity.Rule;
+import com.engine.entity.RuleConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.core.io.Resource;
@@ -45,7 +45,7 @@ public class TestExecGroovyShell {
         Resource resource = resolver.getResource("classpath:groovy/demoHello.groovy");
 //        groovy.eval("def sayHelo(def order) {println \"hello world\" + order.docNum} ");
         groovy.eval(getScriptFromSource(resource));
-        Rule rule = new Rule();
+        RuleConfig rule = new RuleConfig();
         rule.setDocNum("code");
         ((Invocable)groovy).invokeFunction("sayHelo", rule);
 
@@ -54,11 +54,17 @@ public class TestExecGroovyShell {
         Resource resource1 = resolver.getResource("classpath:groovy//demoHaHa.groovy");
 //        groovy.eval("def sayHelo(def order) {println \"hello world\" + order.docNum} ");
         groovy.eval(getScriptFromSource(resource1));
-        Rule entity1 = new Rule();
+        RuleConfig entity1 = new RuleConfig();
         entity1.setDocNum("code");
         ((Invocable) ((Invocable)groovy)).invokeFunction("sayHaHa", entity1);
 
         System.out.println("end");
     }
+
+    @Test
+    public void te(){
+        System.out.println(Integer.MAX_VALUE);
+    }
+
 
 }
