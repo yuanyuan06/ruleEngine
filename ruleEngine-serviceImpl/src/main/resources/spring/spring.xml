@@ -22,6 +22,19 @@
 
     <context:component-scan base-package="com.engine.service" />
 
+    <bean  id="dataSourceTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" value="dataSource" />
+
+    </bean>
+
+
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" value="dataSource" />
+        <property name="mapperLocations" value="classpath*:" />
+    </bean>
+
+
     <bean id="groovyEngine" class="org.codehaus.groovy.jsr223.GroovyScriptEngineImpl" lazy-init="true" />
     <bean id="resourcePatternResolver" class="org.springframework.core.io.support.PathMatchingResourcePatternResolver" lazy-init="true" />
 
