@@ -4,4 +4,6 @@ public interface DemoService {
 
     void demoMethod();
 
+    void invokeDemoDao();
+
 }

@@ -2,8 +2,11 @@ package com.engine.service;
 
 
 import com.alibaba.fastjson.JSON;
+import com.engine.dao.DemoDao;
 import com.engine.entity.RuleConfig;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
+import org.jboss.netty.util.internal.ReusableIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.io.*;
+import java.util.List;
 
 @Service("demoService")
 public class DemoServiceImpl implements DemoService {
@@ -25,6 +29,9 @@ public class DemoServiceImpl implements DemoService {
     private ResourcePatternResolver resourcePatternResolver;
     @Autowired
     private ScriptEngine scriptEngine;
+
+    @Autowired
+    private DemoDao demoDao;
 
     @Override
     public void demoMethod(){
@@ -51,5 +58,11 @@ public class DemoServiceImpl implements DemoService {
             logger.error("系统异常", e);
         }
         logger.debug("hello come in service");
+    }
+
+    @Override
+    public void invokeDemoDao() {
+        List<RuleConfig> ruleConfigs = demoDao.queryRules();
+        System.out.println(ruleConfigs.size());
     }
 }
