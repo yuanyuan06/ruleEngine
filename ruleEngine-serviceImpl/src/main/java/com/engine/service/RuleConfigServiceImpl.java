@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.script.Invocable;
+import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,7 @@ public class RuleConfigServiceImpl implements RuleConfigService {
      */
     private Map<String, Invocable> scriptCache;
 
-    private GroovyScriptEngineImpl groovyScriptEngine;
+    private ScriptEngine groovyScriptEngine;
 
     private Map<String, List<String>> map;
 
@@ -32,11 +33,11 @@ public class RuleConfigServiceImpl implements RuleConfigService {
     private RuleConfigDao ruleConfigDao;
 
 
-
     @Override
     public List<RuleConfig> loadAllScript() {
         return ruleConfigDao.findAllRule();
     }
+
 
     /**
      * 加载脚本并放入缓存
@@ -44,19 +45,25 @@ public class RuleConfigServiceImpl implements RuleConfigService {
      */
     @Override
     public void initScripts() {
+        reloadScripts();
+    }
+
+
+    @Override
+    public void reloadScripts() {
 
         List<RuleConfig> allRule = ruleConfigDao.findAllRule();
+        groovyScriptEngine  = new GroovyScriptEngineImpl();
         for (RuleConfig config: allRule){
             try {
                 Invocable eval = (Invocable) groovyScriptEngine.eval(config.getScript());
                 scriptCache.put(config.getDocNum(), eval);
             } catch (ScriptException e) {
-                e.printStackTrace();
+                logger.error("groovy 脚本初始化异常", e);
             }
         }
 
     }
-
 
     /**
      * by 脚本编码执行相应的脚本
@@ -70,7 +77,7 @@ public class RuleConfigServiceImpl implements RuleConfigService {
         String result = null;
 //        Invocable invocable = scriptCache.get(docNum);
         try {
-            Object o = groovyScriptEngine.invokeFunction(docNum, object);
+            Object o = ((Invocable) groovyScriptEngine).invokeFunction(docNum, object);
             result = JSON.toJSONString(o);
         } catch (ScriptException | NoSuchMethodException e) {
             logger.error("groovy 脚本执行异常", e);

@@ -25,4 +25,10 @@ public interface RuleConfigService {
      * @return
      */
     String execScript(String docNum, Object object);
+
+    /**
+     * 重新加载脚本
+     */
+    void reloadScripts();
+
 }
