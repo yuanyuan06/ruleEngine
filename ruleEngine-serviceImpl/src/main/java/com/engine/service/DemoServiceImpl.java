@@ -65,4 +65,10 @@ public class DemoServiceImpl implements DemoService {
         List<RuleConfig> ruleConfigs = demoDao.queryRules();
         System.out.println(ruleConfigs.size());
     }
+
+    @Override
+    public void invokeDemoMybatis() {
+        List<RuleConfig> configList = demoDao.queryRuleList(1L);
+        System.out.println(JSON.toJSONString(configList));
+    }
 }

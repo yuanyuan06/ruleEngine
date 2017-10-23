@@ -6,4 +6,6 @@ public interface DemoService {
 
     void invokeDemoDao();
 
+    void invokeDemoMybatis();
+
 }
