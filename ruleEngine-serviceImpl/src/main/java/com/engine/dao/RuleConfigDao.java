@@ -6,7 +6,11 @@ import java.util.List;
 
 public interface RuleConfigDao {
 
-    List<RuleConfig> queryRulesO();
+    /**
+     * 查询所有规则
+     * @return
+     */
+    List<RuleConfig> findAllRule();
 
 
 }
