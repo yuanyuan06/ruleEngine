@@ -27,16 +27,13 @@ public class RuleConfigServiceImpl implements RuleConfigService {
 
     private ScriptEngine groovyScriptEngine;
 
+    /**
+     * 脚本 stage 关系
+     */
     private Map<String, List<String>> map;
 
     @Autowired
     private RuleConfigDao ruleConfigDao;
-
-
-    @Override
-    public List<RuleConfig> loadAllScript() {
-        return ruleConfigDao.findAllRule();
-    }
 
 
     /**
@@ -51,7 +48,6 @@ public class RuleConfigServiceImpl implements RuleConfigService {
 
     @Override
     public void reloadScripts() {
-
         List<RuleConfig> allRule = ruleConfigDao.findAllRule();
         groovyScriptEngine  = new GroovyScriptEngineImpl();
         for (RuleConfig config: allRule){
@@ -62,7 +58,11 @@ public class RuleConfigServiceImpl implements RuleConfigService {
                 logger.error("groovy 脚本初始化异常", e);
             }
         }
+    }
 
+    @Override
+    public ScriptEngine getEngine() {
+        return groovyScriptEngine;
     }
 
     /**
@@ -85,5 +85,7 @@ public class RuleConfigServiceImpl implements RuleConfigService {
         return result;
     }
 
-
+    public ScriptEngine getGroovyScriptEngine() {
+        return groovyScriptEngine;
+    }
 }

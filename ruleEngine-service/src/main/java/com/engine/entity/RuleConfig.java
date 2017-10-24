@@ -11,18 +11,26 @@ public class RuleConfig extends BaseEntity {
 
     private static final long serialVersionUID = 4861419277164881114L;
 
+    /**
+     * 主键
+     */
     private Long id;
+    /**
+     * 编码
+     */
     private String docNum;
+    /**
+     * 优先级
+     */
     private Integer priority;
-    private Integer module;
-    private Integer stage;
+    /**
+     * 脚本
+     */
     private String script;
+    /**
+     * 描述
+     */
     private String decription;
-    private Date createTime;
-    private Long createUser;
-    private Long version;
-    private Date lastModifyTime;
-    private Long lastModifyUser;
 
     public Long getId() {
         return id;
@@ -48,22 +56,6 @@ public class RuleConfig extends BaseEntity {
         this.priority = priority;
     }
 
-    public Integer getModule() {
-        return module;
-    }
-
-    public void setModule(Integer module) {
-        this.module = module;
-    }
-
-    public Integer getStage() {
-        return stage;
-    }
-
-    public void setStage(Integer stage) {
-        this.stage = stage;
-    }
-
     public String getScript() {
         return script;
     }
@@ -80,43 +72,4 @@ public class RuleConfig extends BaseEntity {
         this.decription = decription;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getCreateUser() {
-        return createUser;
-    }
-
-    public void setCreateUser(Long createUser) {
-        this.createUser = createUser;
-    }
-
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Date getLastModifyTime() {
-        return lastModifyTime;
-    }
-
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
-    }
-
-    public Long getLastModifyUser() {
-        return lastModifyUser;
-    }
-
-    public void setLastModifyUser(Long lastModifyUser) {
-        this.lastModifyUser = lastModifyUser;
-    }
 }

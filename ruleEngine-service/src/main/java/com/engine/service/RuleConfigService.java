@@ -2,15 +2,10 @@ package com.engine.service;
 
 import com.engine.entity.RuleConfig;
 
+import javax.script.ScriptEngine;
 import java.util.List;
 
 public interface RuleConfigService {
-
-    /**
-     * 加载所有脚本
-     * @return List<RuleConfig>
-     */
-    List<RuleConfig> loadAllScript();
 
     /**
      *初始化脚本
@@ -30,5 +25,8 @@ public interface RuleConfigService {
      * 重新加载脚本
      */
     void reloadScripts();
+
+
+    ScriptEngine getEngine();
 
 }

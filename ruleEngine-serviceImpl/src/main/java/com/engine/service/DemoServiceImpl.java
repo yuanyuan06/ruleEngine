@@ -3,6 +3,7 @@ package com.engine.service;
 
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.DemoDao;
+import com.engine.dao.RuleConfigDao;
 import com.engine.entity.RuleConfig;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
@@ -29,9 +30,14 @@ public class DemoServiceImpl implements DemoService {
     private ResourcePatternResolver resourcePatternResolver;
     @Autowired
     private ScriptEngine scriptEngine;
+    @Autowired
+    private RuleConfigDao ruleConfigDao;
 
     @Autowired
     private DemoDao demoDao;
+
+    @Autowired
+    private RuleConfigService ruleConfigService;
 
     @Override
     public void demoMethod(){
@@ -70,5 +76,12 @@ public class DemoServiceImpl implements DemoService {
     public void invokeDemoMybatis() {
         List<RuleConfig> configList = demoDao.queryRuleList(1L);
         System.out.println(JSON.toJSONString(configList));
+    }
+
+    @Override
+    public void testScriptSaveData() throws ScriptException, NoSuchMethodException {
+        ruleConfigService.reloadScripts();
+        ScriptEngine engine = ruleConfigService.getEngine();
+        ((Invocable)engine).invokeFunction("testInset", null);
     }
 }

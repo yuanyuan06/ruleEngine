@@ -1,0 +1,16 @@
+CREATE TABLE `rule_conf` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+	`doc_num` VARCHAR(254) NOT NULL COMMENT '编码' COLLATE 'utf8_bin',
+	`priority` INT(5) NULL DEFAULT NULL COMMENT '优先级',
+	`module` TINYINT(2) NULL DEFAULT NULL COMMENT '模块',
+	`stage` INT(3) NULL DEFAULT NULL COMMENT '阶段',
+	`script` TEXT NOT NULL COMMENT '脚本代码' COLLATE 'utf8_bin',
+	`decription` VARCHAR(254) NULL DEFAULT NULL COMMENT '描述' COLLATE 'utf8_bin',
+	`create_time` DATETIME NULL DEFAULT NULL COMMENT '创建时间',
+	`create_user` BIGINT(20) NULL DEFAULT NULL COMMENT '创建人',
+	`version` BIGINT(20) NULL DEFAULT NULL COMMENT '版本号',
+	`lastModifyTime` DATETIME NULL DEFAULT NULL COMMENT '最后修改时间',
+	`lastModifyUser` DATETIME NULL DEFAULT NULL COMMENT '最后修改人',
+	PRIMARY KEY (`id`)
+)
+COMMENT='规则引擎--规则配置表';
