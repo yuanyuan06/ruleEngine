@@ -6,6 +6,7 @@ import java.util.Date;
 
 /**
  * 任务
+ * 表: rule_snippet
  */
 public class RuleSnippet extends BaseEntity {
 

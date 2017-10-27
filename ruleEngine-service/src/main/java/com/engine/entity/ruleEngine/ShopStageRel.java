@@ -2,6 +2,9 @@ package com.engine.entity.ruleEngine;
 
 import com.engine.base.BaseEntity;
 
+/**
+ * 店铺与stage 关联关系& stage 执行优先级
+ */
 public class ShopStageRel extends BaseEntity {
 
     /**
