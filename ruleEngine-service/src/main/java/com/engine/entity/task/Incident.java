@@ -1,4 +1,4 @@
-package com.engine.entity;
+package com.engine.entity.task;
 
 import com.engine.base.BaseEntity;
 

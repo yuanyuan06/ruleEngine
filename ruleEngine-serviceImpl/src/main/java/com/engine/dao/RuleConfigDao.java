@@ -1,6 +1,6 @@
 package com.engine.dao;
 
-import com.engine.entity.RuleConfig;
+import com.engine.entity.ruleEngine.RuleSnippet;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface RuleConfigDao {
      * 查询所有规则
      * @return
      */
-    List<RuleConfig> findAllRule();
+    List<RuleSnippet> findAllRule();
 
 
 }

@@ -3,11 +3,8 @@ package com.engine.service;
 
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.DemoDao;
-import com.engine.dao.RuleConfigDao;
-import com.engine.entity.RuleConfig;
-import com.sun.org.apache.xpath.internal.SourceTree;
-import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
-import org.jboss.netty.util.internal.ReusableIterator;
+import com.engine.entity.ruleEngine.RuleSnippet;
+import groovy.lang.Binding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,10 @@ import org.springframework.stereotype.Service;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.List;
 
 @Service("demoService")
@@ -30,8 +30,6 @@ public class DemoServiceImpl implements DemoService {
     private ResourcePatternResolver resourcePatternResolver;
     @Autowired
     private ScriptEngine scriptEngine;
-    @Autowired
-    private RuleConfigDao ruleConfigDao;
 
     @Autowired
     private DemoDao demoDao;
@@ -56,7 +54,7 @@ public class DemoServiceImpl implements DemoService {
                 System.out.println(stringBuffer.toString());
                 scriptEngine.eval(stringBuffer.toString());
             }
-            RuleConfig rule = new RuleConfig();
+            RuleSnippet rule = new RuleSnippet();
             rule.setDocNum("code");
             Object sayHaHa = ((Invocable) scriptEngine).invokeFunction("sayHelo", rule);
             System.out.println(rule.getDocNum() + "::" + sayHaHa);
@@ -68,13 +66,13 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public void invokeDemoDao() {
-        List<RuleConfig> ruleConfigs = demoDao.queryRules();
+        List<RuleSnippet> ruleConfigs = demoDao.queryRules();
         System.out.println(ruleConfigs.size());
     }
 
     @Override
     public void invokeDemoMybatis() {
-        List<RuleConfig> configList = demoDao.queryRuleList(1L);
+        List<RuleSnippet> configList = demoDao.queryRuleList(1L);
         System.out.println(JSON.toJSONString(configList));
     }
 
@@ -82,6 +80,11 @@ public class DemoServiceImpl implements DemoService {
     public void testScriptSaveData() throws ScriptException, NoSuchMethodException {
         ruleConfigService.reloadScripts();
         ScriptEngine engine = ruleConfigService.getEngine();
-        ((Invocable)engine).invokeFunction("testInset", null);
+//        demoDao.testSave("{\"ip\": \"192.168.1.1\", \"time\": \"2015-01-01 13:00:00\", \"result\": \"fail\"}");
+
+        Binding bind = new Binding();
+        ((Invocable)engine).invokeMethod(this, "testInset", demoDao);
+
+
     }
 }

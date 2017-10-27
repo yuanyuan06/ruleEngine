@@ -3,7 +3,7 @@
 
 <mapper namespace="com.engine.dao.DemoDao">
 
-    <select id="queryRules" resultType="com.engine.entity.RuleConfig">
+    <select id="queryRules" resultType="com.engine.entity.ruleEngine.RuleSnippet">
         SELECT * FROM rule_conf
     </select>
 </mapper>

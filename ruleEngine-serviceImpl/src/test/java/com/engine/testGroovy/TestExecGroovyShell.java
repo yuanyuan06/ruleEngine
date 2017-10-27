@@ -1,7 +1,6 @@
 package com.engine.testGroovy;
 
-import com.alibaba.fastjson.JSON;
-import com.engine.entity.RuleConfig;
+import com.engine.entity.ruleEngine.RuleSnippet;
 import groovy.lang.GroovyShell;
 import groovy.lang.Script;
 import org.junit.Before;
@@ -48,7 +47,7 @@ public class TestExecGroovyShell {
         Resource resource = resolver.getResource("classpath:groovy/demoHello.groovy");
 //        groovy.eval("def sayHelo(def order) {println \"hello world\" + order.docNum} ");
         groovy.eval(getScriptFromSource(resource));
-        RuleConfig rule = new RuleConfig();
+        RuleSnippet rule = new RuleSnippet();
         rule.setDocNum("code");
         ((Invocable)groovy).invokeFunction("sayHelo", rule);
 
@@ -57,7 +56,7 @@ public class TestExecGroovyShell {
         Resource resource1 = resolver.getResource("classpath:groovy//demoHaHa.groovy");
 //        groovy.eval("def sayHelo(def order) {println \"hello world\" + order.docNum} ");
         groovy.eval(getScriptFromSource(resource1));
-        RuleConfig entity1 = new RuleConfig();
+        RuleSnippet entity1 = new RuleSnippet();
         entity1.setDocNum("code");
         ((Invocable) ((Invocable)groovy)).invokeFunction("sayHaHa", entity1);
 
@@ -67,5 +66,23 @@ public class TestExecGroovyShell {
     @Test
     public void te(){
         System.out.println(Integer.MAX_VALUE);
+    }
+
+
+    @Test
+    public void tete(){
+        GroovyShell shell = new GroovyShell();
+        shell.evaluate("def test(){println \"hello\"}");
+        Script rr = shell.parse("def test(){println \"hello\"}", "rr");
+
+        rr.invokeMethod("test", null);
+    }
+
+    @Test
+    public void tte(){
+//        GroovyScriptEngine engine = new GroovyScriptEngine();
+        String path = this.getClass().getClassLoader().getResource("").getPath();
+        System.out.println(path);
+
     }
 }

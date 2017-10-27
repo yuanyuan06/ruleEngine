@@ -2,7 +2,8 @@ package com.engine.service;
 
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.RuleConfigDao;
-import com.engine.entity.RuleConfig;
+import com.engine.entity.ruleEngine.RuleSnippet;
+import groovy.lang.Binding;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import javax.script.SimpleScriptContext;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +38,11 @@ public class RuleConfigServiceImpl implements RuleConfigService {
     private RuleConfigDao ruleConfigDao;
 
 
+    @Override
+    public void testMethod() {
+        System.out.println("come in");
+    }
+
     /**
      * 加载脚本并放入缓存
      * @return
@@ -48,12 +55,16 @@ public class RuleConfigServiceImpl implements RuleConfigService {
 
     @Override
     public void reloadScripts() {
-        List<RuleConfig> allRule = ruleConfigDao.findAllRule();
+        List<RuleSnippet> allRule = ruleConfigDao.findAllRule();
+        String path = this.getClass().getClassLoader().getResource("").getPath();
         groovyScriptEngine  = new GroovyScriptEngineImpl();
-        for (RuleConfig config: allRule){
+        SimpleScriptContext ssc = new SimpleScriptContext();
+        for (RuleSnippet config: allRule){
             try {
+                Binding bind = new Binding();
+                bind.setVariable("dao", ruleConfigDao);
                 Invocable eval = (Invocable) groovyScriptEngine.eval(config.getScript());
-                scriptCache.put(config.getDocNum(), eval);
+//                scriptCache.put(config.getDocNum(), eval);
             } catch (ScriptException e) {
                 logger.error("groovy 脚本初始化异常", e);
             }

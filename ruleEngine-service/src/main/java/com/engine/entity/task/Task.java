@@ -1,4 +1,4 @@
-package com.engine.entity;
+package com.engine.entity.task;
 
 import java.io.Serializable;
 import java.util.Date;

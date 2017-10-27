@@ -1,9 +1,6 @@
 package com.engine.service;
 
-import com.engine.entity.RuleConfig;
-
 import javax.script.ScriptEngine;
-import java.util.List;
 
 public interface RuleConfigService {
 
@@ -28,5 +25,7 @@ public interface RuleConfigService {
 
 
     ScriptEngine getEngine();
+
+    void testMethod();
 
 }

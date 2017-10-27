@@ -1,4 +1,4 @@
-package com.engine.entity;
+package com.engine.entity.ruleEngine;
 
 import com.engine.base.BaseEntity;
 
@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 任务
  */
-public class RuleConfig extends BaseEntity {
+public class RuleSnippet extends BaseEntity {
 
     private static final long serialVersionUID = 4861419277164881114L;
 
