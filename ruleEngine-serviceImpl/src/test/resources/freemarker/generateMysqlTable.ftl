@@ -3,7 +3,7 @@
 create table ${tableName} (
         id bigint(20) not null auto_increment comment '主键',
     <#list attrs as attr>
-        ${attr.field} ${attr.type} ${attr.extend}  comment '注释',
+        ${attr.field} ${attr.type}${attr.range!'(20)'} ${attr.extend!''} comment '注释',
     </#list>
         create_user bigint(20) null default null comment '创建人',
         create_time datetime not null comment '创建时间',

@@ -1,11 +1,13 @@
 package com.generateSql;
 
 import com.engine.entity.ruleEngine.RuleSnippet;
+import com.google.common.base.CaseFormat;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.io.Resource;
@@ -32,7 +34,9 @@ public class GenerateSqlByModel {
         Map<String, Object> data = new HashMap<>();
         Class clazz = RuleSnippet.class;
 
-        data.put("tableName", humpConvertUnderline(clazz.getSimpleName()));
+
+//        data.put("tableName", humpConvertUnderline(clazz.getSimpleName()));
+        data.put("tableName", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, clazz.getSimpleName()));
         List<Map<String, Object>> attrs = new ArrayList<>();
 
         PropertyDescriptor[] propertyDescriptors = BeanUtils.getPropertyDescriptors(clazz);
@@ -44,38 +48,59 @@ public class GenerateSqlByModel {
                 continue;
             }
 
-            Long.class.getName();
-            String fieldType = "varchar(20)";
+            String fieldType = decideFieldType(propertyType.getName());
 
-            switch (propertyType.getName()){
-                case "java.lang.Integer":
-                    fieldType = "smallint(5) unsigned";
-                    break;
-                case "java.lang.Long":
-                    fieldType = "bigint(20)";
-                    break;
-                case "java.lang.String":
-                    fieldType = "varchar(20)";
-                    break;
-                case "java.util.Date":
-                    fieldType = "datetime";
-                    break;
-                default:
-
+            String range = null;
+            String extend = null;
+            // 取值范围
+            if(regexKey(name,"num,code")){
+                range = "(20)";
+            }else if(regexKey(name,"description,note,remark,comment")){
+                range = "(200)";
+            }else if(regexKey(name,"priority")){
+                range = "(5)";
+                if("java.lang.Integer".equals(propertyType.getName())){
+                    extend = "unsigned";
+                }
             }
 
             Map<String, Object> attr = new HashMap<>();
-                attr.put("field", humpConvertUnderline(name));
+                attr.put("field", CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, name));
                 attr.put("type", fieldType);
-                attr.put("extend", "");
+                attr.put("range", range);
+                attr.put("extend", extend);
             attrs.add(attr);
         }
         data.put("attrs", attrs);
-
-
-
         drawFTL(data);
+    }
 
+
+    /**
+     * 判断 field 的类型
+     * @param propertyType
+     * @return String
+     */
+    private String decideFieldType(String propertyType){
+        String fieldType = "varchar(20)";
+        // 类型
+        switch (propertyType){
+            case "java.lang.Integer":
+                fieldType = "smallint";
+                break;
+            case "java.lang.Long":
+                fieldType = "bigint";
+                break;
+            case "java.lang.String":
+                fieldType = "varchar";
+                break;
+            case "java.util.Date":
+                fieldType = "datetime";
+                break;
+            default:
+
+        }
+        return  fieldType;
     }
 
     @Test
@@ -89,8 +114,10 @@ public class GenerateSqlByModel {
 
     /**
      * 驼峰转换费下划线
+     * guava 类库中有工具类
      * @param source
      * @return
+     * @deprecated
      */
     private String humpConvertUnderline(String source){
         String regexStr = "[A-Z]";
@@ -144,5 +171,51 @@ public class GenerateSqlByModel {
     public void arrayContain(){
         boolean contain = ArrayUtils.contains(new String[]{"class", "id"}, "id");
         System.out.println(contain);
+    }
+
+    @Test
+    public void estimateRange(){
+        Pattern pattern = Pattern.compile("[\\s|\\S]*(ab|abc)[\\s|\\S]*");
+        Matcher matcher = pattern.matcher("abdd");
+        boolean matches = matcher.matches();
+        System.out.println(matches);
+    }
+
+    @Test
+    public void bonding(){
+//        String
+    }
+
+    /**
+     * guava 大小写格式化
+     */
+    @Test
+    public void guavaStringFormat(){
+        // 大写下划线 ==> 小写驼峰
+        System.out.println(CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, "CONSTANT_NAME"));
+        // 小写驼峰 ==> 小写下划线
+        System.out.println(CaseFormat.LOWER_CAMEL.to(CaseFormat.LOWER_UNDERSCORE, "constantName"));
+
+    }
+
+
+    @Test
+    public void testRegexKey(){
+        boolean abcd = regexKey("abcd", "ab,abcd");
+        System.out.println(abcd);
+    }
+
+
+    /**
+     *
+     * @param sourceStr
+     * @param key
+     */
+    private boolean regexKey(String sourceStr, String key){
+        String express = String.format("%s%s%s%s%s", "[\\s|\\S]*", "(", key.replaceAll(",", ")|("), ")", "[\\s|\\S]*");
+        System.out.println(express);
+        Pattern pattern = Pattern.compile(express);
+        Matcher matcher = pattern.matcher(sourceStr);
+        return matcher.matches();
     }
 }

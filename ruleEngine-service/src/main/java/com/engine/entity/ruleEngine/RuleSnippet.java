@@ -31,7 +31,7 @@ public class RuleSnippet extends BaseEntity {
     /**
      * 描述
      */
-    private String decription;
+    private String description;
 
     public Long getId() {
         return id;
@@ -65,12 +65,12 @@ public class RuleSnippet extends BaseEntity {
         this.script = script;
     }
 
-    public String getDecription() {
-        return decription;
+
+    public String getDescription() {
+        return description;
     }
 
-    public void setDecription(String decription) {
-        this.decription = decription;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
 }
