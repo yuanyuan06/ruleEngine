@@ -11,10 +11,6 @@ import java.util.List;
 public class RuleStage extends BaseEntity {
 
     private static final long serialVersionUID = 8917418790147547797L;
-    /**
-     * 主键
-     */
-    private Long id;
 
     /**
      * stage编码
@@ -25,14 +21,6 @@ public class RuleStage extends BaseEntity {
      * 描述
      */
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDocNum() {
         return docNum;

@@ -8,10 +8,7 @@ import com.engine.base.BaseEntity;
 public class ShopStageRel extends BaseEntity {
 
     private static final long serialVersionUID = 1608663849530691202L;
-    /**
-     * 主键
-     */
-    private Long id;
+
     /**
      * 店铺编码
      * 店铺关系上需表示是否开启特殊规则
@@ -30,14 +27,6 @@ public class ShopStageRel extends BaseEntity {
      */
     private Integer priority;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getShopNum() {
         return shopNum;

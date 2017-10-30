@@ -13,10 +13,6 @@ public class RuleSnippet extends BaseEntity {
     private static final long serialVersionUID = 4861419277164881114L;
 
     /**
-     * 主键
-     */
-    private Long id;
-    /**
      * 编码
      */
     private String docNum;
@@ -29,14 +25,6 @@ public class RuleSnippet extends BaseEntity {
      * 描述
      */
     private String description;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDocNum() {
         return docNum;

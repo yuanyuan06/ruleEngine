@@ -11,10 +11,6 @@ public class StageSnippetRel extends BaseEntity{
 
     private static final long serialVersionUID = -7452745544360572299L;
     /**
-     * 主键
-     */
-    private Long id;
-    /**
      * stage编码
      */
     private String stageNum;
@@ -28,14 +24,6 @@ public class StageSnippetRel extends BaseEntity{
      */
     private Integer priority;
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getStageNum() {
         return stageNum;
