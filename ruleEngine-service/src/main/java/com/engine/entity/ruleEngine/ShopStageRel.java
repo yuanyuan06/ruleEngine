@@ -7,6 +7,7 @@ import com.engine.base.BaseEntity;
  */
 public class ShopStageRel extends BaseEntity {
 
+    private static final long serialVersionUID = 1608663849530691202L;
     /**
      * 主键
      */
@@ -29,4 +30,36 @@ public class ShopStageRel extends BaseEntity {
      */
     private Integer priority;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getShopNum() {
+        return shopNum;
+    }
+
+    public void setShopNum(String shopNum) {
+        this.shopNum = shopNum;
+    }
+
+    public String getStageNum() {
+        return stageNum;
+    }
+
+    public void setStageNum(String stageNum) {
+        this.stageNum = stageNum;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
 }

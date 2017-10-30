@@ -20,10 +20,7 @@ public class RuleSnippet extends BaseEntity {
      * 编码
      */
     private String docNum;
-    /**
-     * 优先级
-     */
-    private Integer priority;
+
     /**
      * 脚本
      */
@@ -47,14 +44,6 @@ public class RuleSnippet extends BaseEntity {
 
     public void setDocNum(String docNum) {
         this.docNum = docNum;
-    }
-
-    public Integer getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Integer priority) {
-        this.priority = priority;
     }
 
     public String getScript() {
