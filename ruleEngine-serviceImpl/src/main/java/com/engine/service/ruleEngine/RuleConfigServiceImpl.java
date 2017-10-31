@@ -1,4 +1,4 @@
-package com.engine.service;
+package com.engine.service.ruleEngine;
 
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.RuleConfigDao;

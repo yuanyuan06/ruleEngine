@@ -4,6 +4,7 @@ package com.engine.service;
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.DemoDao;
 import com.engine.entity.ruleEngine.RuleSnippet;
+import com.engine.service.ruleEngine.RuleConfigService;
 import groovy.lang.Binding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

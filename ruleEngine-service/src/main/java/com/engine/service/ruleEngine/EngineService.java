@@ -1,4 +1,4 @@
-package com.engine.service;
+package com.engine.service.ruleEngine;
 
 public interface EngineService {
 
@@ -9,7 +9,7 @@ public interface EngineService {
      * @param obj
      * @return
      */
-    String applyEngine(String shopNum, String stageNum, Object obj);
+    void applyEngine(String shopNum, String stageNum, Object obj);
 
 
 

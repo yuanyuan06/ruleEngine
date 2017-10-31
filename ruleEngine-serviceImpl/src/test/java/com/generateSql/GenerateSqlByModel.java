@@ -1,6 +1,9 @@
 package com.generateSql;
 
 import com.engine.entity.ruleEngine.RuleSnippet;
+import com.engine.entity.ruleEngine.RuleStage;
+import com.engine.entity.ruleEngine.ShopStageRel;
+import com.engine.entity.ruleEngine.StageSnippetRel;
 import com.google.common.base.CaseFormat;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -32,7 +35,7 @@ public class GenerateSqlByModel {
     public void generateSqlForMysql() throws IOException, TemplateException {
 
         Map<String, Object> data = new HashMap<>();
-        Class clazz = RuleSnippet.class;
+        Class clazz = StageSnippetRel.class;
 
 
 //        data.put("tableName", humpConvertUnderline(clazz.getSimpleName()));
