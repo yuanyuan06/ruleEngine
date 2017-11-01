@@ -77,7 +77,7 @@ class TestReflection{
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         int i = 0;
         for (StackTraceElement stack: stackTrace) {
-            System.out.println(i++ + " " + stack.getClassName() + " " + stack.getMethodName() + " " + stack.getLineNumber());
+            System.out.println(i++ + " " + stack.getFileName() + " " + stack.getClassName() + " " + stack.getMethodName() + " " + stack.getLineNumber());
         }
         String className = stackTrace[2].getClassName();
         String methodName = stackTrace[2].getMethodName();
