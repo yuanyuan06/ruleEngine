@@ -1,6 +1,6 @@
 import com.alibaba.druid.pool.DruidDataSource
-import org.apache.ibatis.session.SqlSessionFactory
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl
+import org.mybatis.spring.SqlSessionFactoryBean
 import org.mybatis.spring.mapper.MapperScannerConfigurer
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver
@@ -28,15 +28,15 @@ beans{
     }
 
     dataSourceTransactionManager(DataSourceTransactionManager){
-        dataSource : ref dataSource
+        dataSource :ref("dataSource")
     }
 
-    sqlSessionFactory(SqlSessionFactory){
-        dataSource ref: dataSource
+    sqlSessionFactory(SqlSessionFactoryBean){
+        dataSource :ref("dataSource")
         mapperLocations="classpath*:com/engine/dao/sqlMap/*Map.xml"
     }
 
-    (MapperScannerConfigurer){
+    mapperScannerConfigurer(MapperScannerConfigurer){
         basePackage="com.engine.dao"
         sqlSessionFactoryBeanName="sqlSessionFactory"
     }
@@ -49,5 +49,5 @@ beans{
 
     }
 
-    importBeans "../spring-dubbo-provider.xml"
+//    importBeans "../spring-dubbo-provider.xml"
 }
