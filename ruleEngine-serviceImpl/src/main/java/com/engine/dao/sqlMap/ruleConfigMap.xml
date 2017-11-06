@@ -4,18 +4,46 @@
 <mapper namespace="com.engine.dao.RuleConfigDao">
 
     <select id="findAllRule" resultType="com.engine.entity.ruleEngine.RuleSnippet">
-        SELECT id,
-         doc_num docNum,
-         priority,
-         module,
-         stage,
-         script,
-          decription,
-          create_time createTime,
-          create_user createUser,
-           version,
-           lastModifyTime,
+        SELECT
+            id,
+            doc_num docNum,
+            priority,
+            module,
+            stage,
+            script,
+            decription,
+            create_time createTime,
+            create_user createUser,
+            version,
+            lastModifyTime,
             lastModifyUser
         FROM rule_conf
     </select>
+
+
+    <select id="querySnippetGroupByStage" resultMap="stageCommand" >
+        select
+            t.doc_num stageNum
+        from
+            rule_stage t
+    </select>
+    
+    <select id="querySnippetByStage" resultType="string">
+        select
+          r.snippet_num
+        from
+          stage_snippet_rel r
+        where
+          r.stage_num = #{stage_num}
+        order by
+          r.priority
+    </select>
+
+    <resultMap id="stageCommand" type="com.engine.command.StageSnippetCommand">
+        <result property="stageNum" column="stageNum" />
+        <collection property="snippetNums" column="stageNum" select="querySnippetByStage"/>
+    </resultMap>
+
+
+
 </mapper>

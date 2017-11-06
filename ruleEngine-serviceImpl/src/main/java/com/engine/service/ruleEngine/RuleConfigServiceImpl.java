@@ -14,6 +14,7 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import javax.script.SimpleScriptContext;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,7 +33,7 @@ public class RuleConfigServiceImpl implements RuleConfigService {
     /**
      * 脚本 stage 关系
      */
-    private Map<String, List<String>> map;
+    private Map<String, List<String>> stageSnippet = new HashMap<>();
 
     @Autowired
     private RuleConfigDao ruleConfigDao;
@@ -56,15 +57,11 @@ public class RuleConfigServiceImpl implements RuleConfigService {
     @Override
     public void reloadScripts() {
         List<RuleSnippet> allRule = ruleConfigDao.findAllRule();
-        String path = this.getClass().getClassLoader().getResource("").getPath();
         groovyScriptEngine  = new GroovyScriptEngineImpl();
         SimpleScriptContext ssc = new SimpleScriptContext();
         for (RuleSnippet config: allRule){
             try {
-                Binding bind = new Binding();
-                bind.setVariable("dao", ruleConfigDao);
                 Invocable eval = (Invocable) groovyScriptEngine.eval(config.getScript());
-//                scriptCache.put(config.getDocNum(), eval);
             } catch (ScriptException e) {
                 logger.error("groovy 脚本初始化异常", e);
             }
@@ -86,7 +83,6 @@ public class RuleConfigServiceImpl implements RuleConfigService {
     public String execScript(String docNum, Object object) {
 
         String result = null;
-//        Invocable invocable = scriptCache.get(docNum);
         try {
             Object o = ((Invocable) groovyScriptEngine).invokeFunction(docNum, object);
             result = JSON.toJSONString(o);
