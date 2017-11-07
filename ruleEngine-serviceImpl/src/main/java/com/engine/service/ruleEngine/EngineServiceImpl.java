@@ -39,7 +39,8 @@ public class EngineServiceImpl implements EngineService {
 
         // 执行一组组脚本代码块
         for (String snippet : new String[]{"snippet"}) {
-            ActionCache.ActionEntity action = new ActionCache.ActionEntity();
+            ActionCache.ActionEntity action = ActionCache.newAction();
+            ActionCache.ActionEntity entity = ActionCache.newAction();
             Object o = ((Invocable) engine).invokeFunction(snippet, action);
             ActionCache.addAction(action);
         }

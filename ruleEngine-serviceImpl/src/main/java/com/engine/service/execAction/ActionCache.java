@@ -39,6 +39,11 @@ public class ActionCache {
     }
 
 
+    public static ActionEntity newAction(){
+        return new ActionEntity();
+    }
+
+
 
     public static class ActionEntity {
 
