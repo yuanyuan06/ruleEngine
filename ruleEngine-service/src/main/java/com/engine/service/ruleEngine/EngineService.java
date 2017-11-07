@@ -1,5 +1,7 @@
 package com.engine.service.ruleEngine;
 
+import javax.script.ScriptException;
+
 public interface EngineService {
 
     /**
@@ -9,7 +11,7 @@ public interface EngineService {
      * @param obj
      * @return
      */
-    void applyEngine(String shopNum, String stageNum, Object obj);
+    void applyEngine(String shopNum, String stageNum, Object obj) throws ScriptException, NoSuchMethodException;
 
 
 
