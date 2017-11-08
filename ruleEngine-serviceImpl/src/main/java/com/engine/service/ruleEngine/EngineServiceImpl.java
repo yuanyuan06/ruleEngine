@@ -57,7 +57,6 @@ public class EngineServiceImpl implements EngineService {
         for (String snippetNum : snippetNums) {
             ScriptEngine engine = ruleConfigService.getEngine();
             ActionCache.ActionEntity action = ActionCache.newAction();
-            ActionCache.ActionEntity entity = ActionCache.newAction();
             Object o = ((Invocable) engine).invokeFunction(snippetNum, action);
             ActionCache.addAction(action);
         }

@@ -43,8 +43,6 @@ public class ActionCache {
         return new ActionEntity();
     }
 
-
-
     public static class ActionEntity {
 
         private String clazz;
