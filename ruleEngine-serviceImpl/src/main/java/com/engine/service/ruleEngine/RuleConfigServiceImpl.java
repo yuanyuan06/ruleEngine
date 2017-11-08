@@ -81,7 +81,6 @@ public class RuleConfigServiceImpl implements RuleConfigService {
      */
     @Override
     public String execScript(String docNum, Object object) {
-
         String result = null;
         try {
             Object o = ((Invocable) groovyScriptEngine).invokeFunction(docNum, object);

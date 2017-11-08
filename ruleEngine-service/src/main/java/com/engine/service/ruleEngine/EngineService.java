@@ -14,5 +14,11 @@ public interface EngineService {
     void applyEngine(String shopNum, String stageNum, Object obj) throws ScriptException, NoSuchMethodException;
 
 
+    /**
+     * stage & snippet 缓存维护
+     */
+    void cacheStage();
+
+
 
 }

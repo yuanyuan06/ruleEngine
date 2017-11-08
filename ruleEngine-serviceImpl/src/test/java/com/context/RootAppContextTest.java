@@ -14,7 +14,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.xml.transform.Source;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring/spring.xml"})
@@ -34,9 +36,8 @@ public class RootAppContextTest {
     @Test
     public void testDao(){
 
-        List<StageSnippetCommand> strings = ruleConfigDao.querySnippetGroupByStage();
-        String s = JSON.toJSONString(strings);
-        System.out.println(s);
+        List<StageSnippetCommand> stringObjectMap = ruleConfigDao.querySnippetGroupByStage();
+        System.out.println(JSON.toJSONString(stringObjectMap));
     }
 
 
