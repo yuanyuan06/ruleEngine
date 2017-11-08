@@ -7,17 +7,14 @@
         SELECT
             id,
             doc_num docNum,
-            priority,
-            module,
-            stage,
             script,
-            decription,
+            description,
             create_time createTime,
             create_user createUser,
             version,
-            lastModifyTime,
-            lastModifyUser
-        FROM rule_conf
+            last_modify_time lastModifyTime,
+            last_modify_user lastModifyUser
+        FROM rule_snippet
     </select>
 
 
