@@ -5,6 +5,7 @@ import com.engine.dao.RuleConfigDao;
 import com.engine.service.execAction.ActionCache;
 import com.esotericsoftware.reflectasm.MethodAccess;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 
 @Service("engineService")
-public class EngineServiceImpl implements EngineService {
+public class EngineServiceImpl implements EngineService, InitializingBean {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -69,5 +70,10 @@ public class EngineServiceImpl implements EngineService {
         for (StageSnippetCommand stage : stages) {
             stageSnippet.put(stage.getStageNum(), stage.getSnippetNums());
         }
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        cacheStage();
     }
 }

@@ -2,7 +2,7 @@ create table rule_snippet (
   id bigint(20) not null auto_increment comment '主键',
   doc_num varchar(20)  comment '编码',
   description varchar(200)  comment '描述',
-  script varchar(20)  comment '脚本',
+  script TEXT  comment '脚本',
   create_user bigint(20) null default null comment '创建人',
   create_time datetime not null comment '创建时间',
   last_modify_user bigint(20) null default null comment '最后修改人',

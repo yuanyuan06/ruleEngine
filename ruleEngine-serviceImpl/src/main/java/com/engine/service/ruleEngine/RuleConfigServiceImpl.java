@@ -7,6 +7,7 @@ import groovy.lang.Binding;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service("ruleConfigService")
-public class RuleConfigServiceImpl implements RuleConfigService {
+public class RuleConfigServiceImpl implements RuleConfigService, InitializingBean {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -93,5 +94,10 @@ public class RuleConfigServiceImpl implements RuleConfigService {
 
     public ScriptEngine getGroovyScriptEngine() {
         return groovyScriptEngine;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        initScripts();
     }
 }
