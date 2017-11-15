@@ -1,5 +1,6 @@
 package com.engine.service.ruleEngine;
 
+import javax.script.Invocable;
 import javax.script.ScriptEngine;
 
 public interface RuleConfigService {
@@ -24,8 +25,9 @@ public interface RuleConfigService {
     void reloadScripts();
 
 
-    ScriptEngine getEngine();
+//    ScriptEngine getEngine();
 
-    void testMethod();
+
+    Invocable getInvocable();
 
 }

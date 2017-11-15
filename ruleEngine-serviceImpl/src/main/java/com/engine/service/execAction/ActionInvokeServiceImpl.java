@@ -15,7 +15,5 @@ public class ActionInvokeServiceImpl implements  ActionInvokeService {
     public void invoke() {
         System.out.println("come in");
         Object bean = applicationContext.getBean("bean");
-
-
     }
 }

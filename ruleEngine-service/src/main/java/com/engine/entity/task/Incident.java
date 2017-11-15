@@ -17,8 +17,6 @@ public class Incident extends BaseEntity {
     private Long taskId;                            //所属任务
     private Long orderItem;                         //关联单据明细
     private String inducement;                      //事件触发原因, json封装
-    private Long version;                           //版本号
-    private Date lastModifyTime;                    //最后修改时间
 
     public Long getId() {
         return id;
@@ -68,19 +66,4 @@ public class Incident extends BaseEntity {
         this.inducement = inducement;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Date getLastModifyTime() {
-        return lastModifyTime;
-    }
-
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
-    }
 }

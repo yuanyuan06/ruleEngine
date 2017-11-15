@@ -3,7 +3,6 @@ package com.engine.service.ruleEngine;
 import com.alibaba.fastjson.JSON;
 import com.engine.dao.RuleConfigDao;
 import com.engine.entity.ruleEngine.RuleSnippet;
-import groovy.lang.Binding;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,11 +39,6 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
     private RuleConfigDao ruleConfigDao;
 
 
-    @Override
-    public void testMethod() {
-        System.out.println("come in");
-    }
-
     /**
      * 加载脚本并放入缓存
      * @return
@@ -67,11 +61,6 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
                 logger.error("groovy 脚本初始化异常", e);
             }
         }
-    }
-
-    @Override
-    public ScriptEngine getEngine() {
-        return groovyScriptEngine;
     }
 
     /**
@@ -99,5 +88,10 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
     @Override
     public void afterPropertiesSet() throws Exception {
         initScripts();
+    }
+
+    @Override
+    public Invocable getInvocable() {
+        return (Invocable) groovyScriptEngine;
     }
 }

@@ -56,9 +56,9 @@ public class EngineServiceImpl implements EngineService, InitializingBean {
 
     private void execSnippet(List<String> snippetNums) throws ScriptException, NoSuchMethodException {
         for (String snippetNum : snippetNums) {
-            ScriptEngine engine = ruleConfigService.getEngine();
+            Invocable invocable = ruleConfigService.getInvocable();
             ActionCache.ActionEntity action = ActionCache.newAction();
-            Object o = ((Invocable) engine).invokeFunction(snippetNum, action);
+            Object o = invocable.invokeFunction(snippetNum, action);
             ActionCache.addAction(action);
         }
     }
