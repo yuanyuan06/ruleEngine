@@ -19,7 +19,7 @@
 
 <appender name="ConsoleAppender" class="org.apache.log4j.ConsoleAppender">
   <layout class="org.apache.log4j.PatternLayout">
-   <param name="ConversionPattern" value="%d{MM-dd HH:mm:ss.SSS}  %5p [%t] (%F:%L) -%m%n" />
+   <param name="ConversionPattern" value="%d{MM-dd HH:mm:ss.SSS} %c %5p [%t] (%F:%L) -%m%n" />
   </layout>
 </appender>
 
@@ -29,6 +29,15 @@
     <!--<appender-ref ref="RollingFileAppender"/>-->
     <appender-ref ref="ConsoleAppender"/>
 </logger>
+
+
+<logger name="org.apache.ibatis.logging.jdbc" >
+    <level value="debug"/>
+    <!--<appender-ref ref="RollingFileAppender"/>-->
+    <appender-ref ref="ConsoleAppender"/>
+</logger>
+
+
 
 
 <root>

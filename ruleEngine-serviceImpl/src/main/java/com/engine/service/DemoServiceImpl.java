@@ -80,11 +80,11 @@ public class DemoServiceImpl implements DemoService {
     @Override
     public void testScriptSaveData() throws ScriptException, NoSuchMethodException {
         ruleConfigService.reloadScripts();
-        ScriptEngine engine = ruleConfigService.getEngine();
+        Invocable invocable = ruleConfigService.getInvocable();
 //        demoDao.testSave("{\"ip\": \"192.168.1.1\", \"time\": \"2015-01-01 13:00:00\", \"result\": \"fail\"}");
 
         Binding bind = new Binding();
-        ((Invocable)engine).invokeMethod(this, "testInset", demoDao);
+        ((Invocable)invocable).invokeMethod(this, "testInset", demoDao);
 
 
     }

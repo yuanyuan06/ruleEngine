@@ -1,16 +1,14 @@
 package com.generateSql;
 
 import com.engine.entity.ruleEngine.RuleSnippet;
-import com.engine.entity.ruleEngine.RuleStage;
-import com.engine.entity.ruleEngine.ShopStageRel;
-import com.engine.entity.ruleEngine.StageSnippetRel;
+import com.engine.entity.task.HumanTask;
+import com.engine.entity.task.Incident;
 import com.google.common.base.CaseFormat;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.core.io.Resource;
@@ -35,7 +33,7 @@ public class GenerateSqlByModel {
     public void generateSqlForMysql() throws IOException, TemplateException {
 
         Map<String, Object> data = new HashMap<>();
-        Class clazz = StageSnippetRel.class;
+        Class clazz = Incident.class;
 
 
 //        data.put("tableName", humpConvertUnderline(clazz.getSimpleName()));

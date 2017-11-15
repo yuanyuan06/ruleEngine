@@ -5,7 +5,7 @@ import com.engine.base.BaseEntity;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Task extends BaseEntity {
+public class HumanTask extends BaseEntity {
 
     private static final long serialVersionUID = -8125221784293871208L;
 
