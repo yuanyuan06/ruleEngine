@@ -34,6 +34,7 @@ public class TestHumanTaskTest {
         Incident incident = new Incident();
         incident.setDocNum("incident");
         humanTaskDao.insertIncident(incident);
+        System.out.println(incident.getId());
     }
 
     @Test
@@ -45,6 +46,9 @@ public class TestHumanTaskTest {
             list.add(incident);
         }
         humanTaskDao.batchInsertIncident(list);
+        for (Incident incident : list) {
+            System.out.println(incident.getId());
+        }
     }
 
 

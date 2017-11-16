@@ -33,13 +33,21 @@
 
 
   <!--  任务事件  start -->
-  <insert id="insertIncident" parameterType="com.engine.entity.task.Incident">
+  <insert id="insertIncident" parameterType="com.engine.entity.task.Incident" keyProperty="id" useGeneratedKeys="true">
     <include refid="titleSnippetForInsertIncident" />
 	VALUES
-    <include refid="valueSnippetForInsertIncident" />
+      ( #{docNum},
+        #{inducement},
+        #{name},
+        #{orderItem},
+        #{taskId},
+        #{createUser},
+        NOW(),
+        #{lastModifyUser},
+        NOW())
   </insert>
   
-  <insert id="batchInsertIncident" parameterType="com.engine.entity.task.Incident">
+  <insert id="batchInsertIncident" parameterType="com.engine.entity.task.Incident" keyProperty="id" useGeneratedKeys="true">
     <include refid="titleSnippetForInsertIncident" />
     VALUES
     <foreach collection="list" item="item" separator=",">
