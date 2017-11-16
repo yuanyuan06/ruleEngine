@@ -6,67 +6,62 @@
   <insert id="insertHumanTask" parameterType="com.engine.entity.task.HumanTask">
     INSERT INTO human_task
       (doc_num,
-      name, orde_id,
-      order_type,
-      role,
-      `status`,
-      `type`,
-      user,
-      create_user,
-      create_time,
-      last_modify_user,
-      last_modify_time)
+       name, orde_id,
+       order_type,
+       role,
+       `status`,
+       `type`,
+       user,
+       create_user,
+       create_time,
+       last_modify_user,
+       last_modify_time)
 	VALUES
       (#{docNum},
-      #{name},
-      #{ordeId},
-      #{orderType},
-      #{role},
-      #{status},
-      #{type},
-      #{user},
-      #{createUser},
+       #{name},
+       #{ordeId},
+       #{orderType},
+       #{role},
+       #{status},
+       #{type},
+       #{user},
+       #{createUser},
        NOW(),
        #{lastModifyUser},
        NOW())
   </insert>
 
+
+  <!--  任务事件  start -->
   <insert id="insertIncident" parameterType="com.engine.entity.task.Incident">
-    INSERT INTO incident
-    ( doc_num,
-      inducement,
-      name,
-      order_item,
-      task_id,
-      create_user,
-      create_time,
-      last_modify_user,
-      last_modify_time)
+    <include refid="titleSnippetForInsertIncident" />
 	VALUES
-	( #{docNum},
-      #{inducement},
-      #{name},
-      #{orderItem},
-      #{taskId},
-      #{createUser},
-      NOW(),
-      #{lastModifyUser},
-      NOW())
+    <include refid="valueSnippetForInsertIncident" />
   </insert>
   
   <insert id="batchInsertIncident" parameterType="com.engine.entity.task.Incident">
-    INSERT INTO incident
-      (doc_num,
-      inducement,
-      name,
-      order_item,
-      task_id,
-      create_user,
-      create_time,
-      last_modify_user,
-      last_modify_time)
+    <include refid="titleSnippetForInsertIncident" />
     VALUES
     <foreach collection="list" item="item" separator=",">
+      <include refid="valueSnippetForInsertIncident" />
+    </foreach>
+
+  </insert>
+  
+  <sql id="titleSnippetForInsertIncident" >
+    INSERT INTO incident
+     ( doc_num,
+       inducement,
+       name,
+       order_item,
+       task_id,
+       create_user,
+       create_time,
+       last_modify_user,
+       last_modify_time)
+  </sql>
+
+  <sql id="valueSnippetForInsertIncident" >
       ( #{item.docNum},
         #{item.inducement},
         #{item.name},
@@ -76,10 +71,9 @@
         NOW(),
         #{item.lastModifyUser},
         NOW())
-    </foreach>
+  </sql>
 
-  </insert>
-
+  <!-- 任务事件 end-->
 
 
 </mapper>
