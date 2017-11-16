@@ -6,7 +6,8 @@
   <insert id="insertHumanTask" parameterType="com.engine.entity.task.HumanTask">
     INSERT INTO human_task
       (doc_num,
-       name, orde_id,
+       name,
+       order_id,
        order_type,
        role,
        `status`,
@@ -19,7 +20,7 @@
 	VALUES
       (#{docNum},
        #{name},
-       #{ordeId},
+       #{orderId},
        #{orderType},
        #{role},
        #{status},

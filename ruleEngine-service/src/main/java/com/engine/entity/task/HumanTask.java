@@ -17,7 +17,7 @@ public class HumanTask extends BaseEntity {
     private Integer type;							//任务类型
     private Long user;								//任务所属用户
     private Integer status;							//任务状态
-    private Long ordeId;							//相关单据
+    private Long orderId;							//相关单据
 
     public Long getId() {
         return id;
@@ -84,11 +84,12 @@ public class HumanTask extends BaseEntity {
         this.orderType = orderType;
     }
 
-    public Long getOrdeId() {
-        return ordeId;
+
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOrdeId(Long ordeId) {
-        this.ordeId = ordeId;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
     }
 }
