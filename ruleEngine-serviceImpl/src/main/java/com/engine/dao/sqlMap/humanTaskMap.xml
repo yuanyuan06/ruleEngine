@@ -31,4 +31,55 @@
        NOW())
   </insert>
 
+  <insert id="insertIncident" parameterType="com.engine.entity.task.Incident">
+    INSERT INTO incident
+    ( doc_num,
+      inducement,
+      name,
+      order_item,
+      task_id,
+      create_user,
+      create_time,
+      last_modify_user,
+      last_modify_time)
+	VALUES
+	( #{docNum},
+      #{inducement},
+      #{name},
+      #{orderItem},
+      #{taskId},
+      #{createUser},
+      NOW(),
+      #{lastModifyUser},
+      NOW())
+  </insert>
+  
+  <insert id="batchInsertIncident" parameterType="com.engine.entity.task.Incident">
+    INSERT INTO incident
+      (doc_num,
+      inducement,
+      name,
+      order_item,
+      task_id,
+      create_user,
+      create_time,
+      last_modify_user,
+      last_modify_time)
+    VALUES
+    <foreach collection="list" item="item" separator=",">
+      ( #{item.docNum},
+        #{item.inducement},
+        #{item.name},
+        #{item.orderItem},
+        #{item.taskId},
+        #{item.createUser},
+        NOW(),
+        #{item.lastModifyUser},
+        NOW())
+    </foreach>
+
+  </insert>
+
+
+
 </mapper>
