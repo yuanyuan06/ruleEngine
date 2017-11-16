@@ -1,5 +1,8 @@
 package com.engine.service.task;
 
+import com.engine.entity.task.HumanTask;
+import com.engine.entity.task.Incident;
+
 public interface TaskService {
 
 
@@ -10,7 +13,7 @@ public interface TaskService {
      * 什么任务
      * 描述
      * @param userId
-     * @param description
+     * @param humanTask
      */
-    void createTask(Long userId, String description);
+    void createTask(Long userId, HumanTask humanTask);
 }
