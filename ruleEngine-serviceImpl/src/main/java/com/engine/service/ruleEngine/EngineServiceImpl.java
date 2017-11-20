@@ -11,8 +11,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.script.Invocable;
-import javax.script.ScriptEngine;
 import javax.script.ScriptException;
+import javax.swing.*;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,38 +32,52 @@ public class EngineServiceImpl implements EngineService, InitializingBean {
 
     private Map<String, List<String>> stageSnippet = new LinkedHashMap<>();
 
-    @Override
-    public void applyEngine(String shopNum, String stage, Object obj) throws ScriptException, NoSuchMethodException {
 
+    private ScriptFeedback execSnippet(List<String> snippetNums) throws ScriptException, NoSuchMethodException {
+        ScriptFeedback feedback = new ScriptFeedback();
+        for (String snippetNum : snippetNums) {
+            // 执行脚本
+            Invocable invocable = ruleConfigService.getInvocable();
+            ActionCache.ActionEntity action = ActionCache.newAction();
+            Boolean bindAction = false;
+            Object o = invocable.invokeFunction(snippetNum, bindAction, action);
+
+            feedback.putFeedback(o, null);
+        }
+        return  feedback;
+    }
+
+
+    @Override
+    public List<Feedback> applyEngine(String shopNum, String stage, Object obj) throws ScriptException, NoSuchMethodException {
+        List<Feedback> list = new ArrayList<>();
         // 获取该店铺下规则包
+        // 获取规则反馈 & 需要执行的 action(method, class, args)
         if (StringUtils.isNotBlank(stage)) {               // 指定规则
             List<String> snippets = stageSnippet.get(stage);
-            execSnippet(snippets);
+            ScriptFeedback feedback = execSnippet(snippets);
+            list.add(feedback);
         } else {                                           // 未指定规则, 该店铺下规则遍历
             for(Map.Entry<String, List<String>> entry: stageSnippet.entrySet()){
                 List<String> snippets = entry.getValue();
-                execSnippet(snippets);
+                ScriptFeedback feedback = execSnippet(snippets);
+                list.add(feedback);
             }
         }
 
-        // exec Action one by one
-        for (ActionCache.ActionEntity action: ActionCache.entities) {
+        // 根据所有执行结果, 获取需要执行的action
+        Invocable invocable = ruleConfigService.getInvocable();
+        List<ActionCache.ActionEntity> actionList = (List<ActionCache.ActionEntity>) invocable.invokeFunction("voteAction", list);
+
+        for(ActionCache.ActionEntity action: actionList){
+            // 执行 action list
             Object actualAction = applicationContext.getBean(action.getClazz());
             MethodAccess methodAccess = ActionCache.getCache(action.getClazz());
             Object method = methodAccess.invoke(actualAction, action.getMethod(), action.getArgs());
         }
+
+        return  list;
     }
-
-
-    private void execSnippet(List<String> snippetNums) throws ScriptException, NoSuchMethodException {
-        for (String snippetNum : snippetNums) {
-            Invocable invocable = ruleConfigService.getInvocable();
-            ActionCache.ActionEntity action = ActionCache.newAction();
-            Object o = invocable.invokeFunction(snippetNum, action);
-            ActionCache.addAction(action);
-        }
-    }
-
 
     @Override
     public void cacheStage() {
@@ -75,5 +90,26 @@ public class EngineServiceImpl implements EngineService, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         cacheStage();
+    }
+
+
+    public class ScriptFeedback extends Feedback{
+
+        private List<Object> snippetFeedback = new ArrayList<>();
+        private List<Object> actionFeedback = new ArrayList<>();
+
+        @Override
+        void putFeedback(Object snippet, Object action){
+            snippetFeedback.add(snippet);
+            actionFeedback.add(action);
+        }
+
+        public List<Object> getSnippetFeedback() {
+            return snippetFeedback;
+        }
+
+        public List<Object> getActionFeedback() {
+            return actionFeedback;
+        }
     }
 }

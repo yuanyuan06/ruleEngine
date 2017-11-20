@@ -1,0 +1,91 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+    <!-- 元素顺序, intelliJIDEA 比eclipse约束严格-->
+    <!-- 并不是在所有的web.xml里面都必须全部出现,有些标签在web.xml里面很少使用."?"表示该标签出现次数最多为1,"*"表示可以多次出现.但是如果出现,必须严格按照上面的顺利出现. -->
+	   <!-- 		1, icon?
+					2, display-name?
+					3, description?
+					4, distributable?
+					5, context-param*
+					6, filter*
+					7, filter-mapping*
+					8, listener*
+					9, servlet*
+					10,servlet-mapping*
+					11,session-config?
+					12,mime-mapping*
+					13,welcome-file-list?
+					14,error-page*
+					15,taglib*
+					16,resource-env-ref*
+					17,resource-ref*
+					18,security-constraint*
+					19,login-config?
+					20,security-role*
+					21,env-entry*
+					22,ejb-ref*
+					23,ejb-local-ref -->
+    
+    <display-name>dashboard-web</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:application.xml</param-value>
+    </context-param>
+    <!-- 指定 Log4J 配置文件的地址	 -->
+	<context-param>
+	    <param-name>log4jConfigLocation</param-name>
+	    <param-value>classpath:log4j.xml</param-value>
+<!-- 	    <param-value>/WEB-INF/log4j.properties</param-value> -->
+	</context-param>
+    
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.htm</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <!-- 使用该监听器初始化 Log4J 日志引擎 -->
+	<listener>
+	    <listener-class>
+	    org.springframework.web.util.Log4jConfigListener
+	    </listener-class>
+	</listener>
+	<!-- Introspector 缓存清除监听器,防止内存泄露 -->
+	<listener>
+	    <listener-class>
+	    org.springframework.web.util.IntrospectorCleanupListener
+	    </listener-class>
+	</listener>
+    
+    <servlet>
+        <servlet-name>spring4</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>spring4</servlet-name>
+        <url-pattern>*.htm</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>0</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>login.vm</welcome-file>
+    </welcome-file-list>
+</web-app>

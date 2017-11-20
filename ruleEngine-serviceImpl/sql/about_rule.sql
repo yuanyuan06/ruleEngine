@@ -65,3 +65,18 @@ COMMENT='snippet stage 关联关系'
 ENGINE=InnoDB
 COLLATE='utf8_general_ci'
 ;
+
+CREATE TABLE `action_vote` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `script` TEXT NOT NULL COMMENT '脚本' COLLATE 'utf8_bin',
+  `create_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` BIGINT(20) NOT NULL COMMENT '创建人',
+  `version` BIGINT(20) NOT NULL COMMENT '版本号',
+  `last_modify_time` TIMESTAMP NULL DEFAULT NULL COMMENT '最后修改时间',
+  `last_modify_user` BIGINT(20) NULL DEFAULT NULL COMMENT '最后修改人',
+  PRIMARY KEY (`id`)
+)
+  COMMENT='action选举脚本维护'
+  COLLATE='utf8_general_ci'
+  ENGINE=InnoDB
+;

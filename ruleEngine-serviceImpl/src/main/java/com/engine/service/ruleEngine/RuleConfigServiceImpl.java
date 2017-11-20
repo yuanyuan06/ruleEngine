@@ -81,17 +81,14 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
         return result;
     }
 
-    public ScriptEngine getGroovyScriptEngine() {
-        return groovyScriptEngine;
+    @Override
+    public Invocable getInvocable() {
+        return (Invocable) groovyScriptEngine;
     }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
         initScripts();
-    }
-
-    @Override
-    public Invocable getInvocable() {
-        return (Invocable) groovyScriptEngine;
     }
 }

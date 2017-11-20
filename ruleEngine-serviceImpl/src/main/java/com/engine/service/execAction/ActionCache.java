@@ -3,10 +3,7 @@ package com.engine.service.execAction;
 import com.esotericsoftware.reflectasm.MethodAccess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.misc.Cache;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class ActionCache {
@@ -15,9 +12,7 @@ public class ActionCache {
 
     private static Map<String, MethodAccess> cache;
 
-    public static List<ActionEntity> entities = new ArrayList<>();
-
-
+    // 缓存 obj <clazz, obj>
     public static MethodAccess getCache(String clazz){
         MethodAccess methodAccess = cache.get(clazz);
         try {
@@ -32,12 +27,6 @@ public class ActionCache {
         }
         return methodAccess;
     }
-
-
-    public static void addAction(ActionEntity entity){
-        entities.add(entity);
-    }
-
 
     public static ActionEntity newAction(){
         return new ActionEntity();
