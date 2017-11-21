@@ -40,7 +40,7 @@
             background: #e5e5d6;
             margin: 5px 5px;
             text-align: left;
-            height: 950px;
+            height: 948px;
         }
 
         .sider_bar{
@@ -116,7 +116,8 @@
             <em>规则应用反馈</em><br>
             <textarea class="common_textarea"></textarea><br>
 
-            [[${feedback.createTime}]]
+            [[${feedback.createTime}]] <br>
+            [[${#dates.format(feedback.createTime.getTime(), 'yyyy-MM-dd HH:mm:ss')}]]
 
         </div>
 
