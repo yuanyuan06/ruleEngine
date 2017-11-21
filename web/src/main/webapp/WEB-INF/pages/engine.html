@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .common_textarea{
+        　　resize:none;
+            width: 450px;
+            height: 300px;
+            max-width: 450px;
+            max-height: 300px;
+            min-width: 450px;
+            min-height: 300px;
+        }
+
+        #apply_table{
+            width: 450px;
+        }
+
+        .blank_td{
+            width: 60px;
+        }
+        .common_btn{
+            width: 80px;
+        }
+
+
+        #snippet_num,#stage_num{
+            align:right;
+            width:70px;
+        }
+        .apply_select{
+            align:right;
+            width:15%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <em>单据(数据格式json)</em><br/>
+        <textarea class="common_textarea"></textarea>
+        <br>
+
+
+        <hr/>
+
+        <em>选择要应用的规则</em>
+        <table id="apply_table">
+            <tr>
+                <td class="apply_select">
+                    <select id="snippet_num" th:each="snippet: ${snippets}">
+                        <option value="snippet" selected>snippet</option>
+                        <option th:text="${snippet}" />
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="common_btn">应用规则</button>
+                </td>
+                <td class="blank_td"> </td>
+                <td class="apply_select">
+                    <select id="stage_num" th:each="stage: ${stages}">
+                        <option value="stage" selected>stage</option>
+                        <option th:text="${stage}" />
+                    </select>
+                </td>
+                <td>
+                    <button type="button" class="common_btn">应用stage</button>
+                </td>
+            </tr>
+        </table>
+
+        <hr/>
+
+        <em>规则应用反馈</em><br>
+        <textarea class="common_textarea"></textarea><br>
+
+
+
+
+        [[${feedback.createTime}]]
+    </div>
+</body>
+</html>
