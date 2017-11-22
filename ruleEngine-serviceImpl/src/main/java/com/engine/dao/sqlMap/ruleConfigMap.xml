@@ -18,6 +18,21 @@
     </select>
 
 
+
+    <select id="findAllRuleByDate" resultType="com.engine.entity.ruleEngine.RuleSnippet">
+        SELECT
+        id,
+        doc_num docNum,
+        script,
+        description,
+        create_time createTime,
+        create_user createUser,
+        version,
+        last_modify_time lastModifyTime,
+        last_modify_user lastModifyUser
+        FROM rule_snippet where last_modify_time = #{lastModifyTime}
+    </select>
+
     <select id="querySnippetGroupByStage" resultMap="stageCommand" >
         select
             t.doc_num stageNum
