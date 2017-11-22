@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style type="text/css">
+
+        .sider_bar ol li .menu_btn:hover{
+            cursor:pointer;
+            background: #e5f0e1;
+        }
     </style>
 
     <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}" />
-    <script th:src="@{/js/jquery-1.8.0.min.js}"></script>
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
 </head>
 <body>
@@ -16,11 +21,11 @@
     <div class="sider_bar">
         <ol>
 
-            <li> <a class="menu_btn" href="#">hello world</a></li>
-            <li> <a class="menu_btn" href="#">编写规则片段</a></li>
-            <li> <a class="menu_btn" href="#">设置stage</a></li>
-            <li> <a class="menu_btn" href="#">配置action</a></li>
-            <li> <a class="menu_btn" href="#">应用规则</a></li>
+            <li> <a class="menu_btn" cus_href="/engine/readme.htm">hello world</a></li>
+            <li> <a class="menu_btn" cus_href="/engine/snippet.htm">编写规则片段</a></li>
+            <li> <a class="menu_btn" cus_href="/engine/stage.htm">设置stage</a></li>
+            <li> <a class="menu_btn" cus_href="/engine/action.htm">配置action</a></li>
+            <li> <a class="menu_btn" cus_href="/engine/apply.htm">应用规则</a></li>
         </ol>
     </div>
 
@@ -37,8 +42,19 @@
 //    console.log(text)
 
     $(".menu_btn").on("click", function () {
-        console.log($(this).prop("href"));
-        window.location.href=$(this).prop("href");
+        console.log($(this).attr("cus_href"));
+//        window.location.href=$(this).prop("href");
+        $.ajax({url: $(this).attr("cus_href"),
+                success:function (result) {
+                    console.log("ha, feedback");
+//                    console.log(result);
+                    $(".main_content").html(result);
+                },
+                error:function(result){
+                    $(".main_content").html("<h2>哈哈, 异常了</h2><br>"+ JSON.stringify(result));
+                }
+
+        })
     })
 
 

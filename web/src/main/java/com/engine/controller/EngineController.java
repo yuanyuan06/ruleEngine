@@ -24,7 +24,7 @@ public class EngineController {
 
     @ResponseBody
     @RequestMapping("apply")
-    public ModelAndView assignEngine(){
+    public ModelAndView enginePage(){
         EngineResultVo vo = new EngineResultVo();
         Map<String, Object> map = new HashMap<>();
         map.put("feedback", vo);
@@ -38,6 +38,39 @@ public class EngineController {
         stages.add("kk");
         map.put("stages", stages);
 
-        return new ModelAndView("engine", map);
+        return new ModelAndView("engineApply", map);
     }
+
+    @ResponseBody
+    @RequestMapping("action")
+    public ModelAndView actionPage(){
+
+        return new ModelAndView("actionSetUp");
+    }
+
+    @ResponseBody
+    @RequestMapping("stage")
+    public ModelAndView stagePage(){
+
+        return new ModelAndView("stageSetUp");
+    }
+
+
+    @ResponseBody
+    @RequestMapping("snippet")
+    public ModelAndView snippetPage(){
+
+        return new ModelAndView("snippetSetUp");
+    }
+
+    @ResponseBody
+    @RequestMapping("readme")
+    public ModelAndView readMePage(){
+
+        return new ModelAndView("readme");
+    }
+
+
+
+
 }
