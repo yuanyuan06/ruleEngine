@@ -14,20 +14,20 @@
     <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}" />
     <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
+<!--    <script type="text/javascript">
+        $(".menu_btn").click(function () {
+            $(this).css({"background": "#e5f0e1"});
+        });
+
+    </script>-->
+
 </head>
 <body>
 <div class="container">
 
     <div class="sider_bar">
         <ol >
-
             <li th:each="menu: ${menus}" class="menu_btn" th:cus_href="${menu.url}" th:text="${menu.value}"></li>
-
-            <!--<li> <a class="menu_btn" cus_href="/engine/readme.htm">hello world</a></li>-->
-            <!--<li> <a class="menu_btn" cus_href="/engine/snippet.htm">编写规则片段</a></li>-->
-            <!--<li> <a class="menu_btn" cus_href="/engine/stage.htm">设置stage</a></li>-->
-            <!--<li> <a class="menu_btn" cus_href="/engine/action.htm">配置action</a></li>-->
-            <!--<li> <a class="menu_btn" cus_href="/engine/apply.htm">应用规则</a></li>-->
         </ol>
     </div>
 
@@ -46,6 +46,10 @@
     $(".menu_btn").on("click", function () {
         console.log($(this).attr("cus_href"));
 //        window.location.href=$(this).prop("href");
+
+        $(".menu_btn").css({"background": ""});
+        $(this).css({"background": "#e5e5d6"});
+
         $.ajax({url: $(this).attr("cus_href"),
                 success:function (result) {
                     console.log("ha, feedback");
