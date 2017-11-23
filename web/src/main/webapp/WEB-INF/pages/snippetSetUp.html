@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <script type="text/javascript">
+        function getScriptNum() {
+            var str = $("#groovyScript").text();
+            if(str){
+                str = str.match(/def(\s?)(\S*)\(/)[2];
+            }else{
+                str = "请书写脚本";
+            }
+            alert(str);
+        }
+
+    </script>
+</head>
 <body>
     <em>groovy脚本编写</em><br/>
-    <textarea class="common_textarea"></textarea>
+    <textarea id="groovyScript" class="common_textarea"></textarea>
     <br>
-    <button type="button" class="common_btn">保存</button>
+    <input id="generateNum" type="button" value="获取编码" onclick="getScriptNum()"><button type="button" class="common_btn">保存</button>
 </body>
 </html>
