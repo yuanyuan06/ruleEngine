@@ -5,7 +5,7 @@
     <title>Title</title>
     <style type="text/css">
 
-        .sider_bar ol li .menu_btn:hover{
+        .sider_bar .menu_btn:hover{
             cursor:pointer;
             background: #e5f0e1;
         }
@@ -19,13 +19,15 @@
 <div class="container">
 
     <div class="sider_bar">
-        <ol>
+        <ol >
 
-            <li> <a class="menu_btn" cus_href="/engine/readme.htm">hello world</a></li>
-            <li> <a class="menu_btn" cus_href="/engine/snippet.htm">编写规则片段</a></li>
-            <li> <a class="menu_btn" cus_href="/engine/stage.htm">设置stage</a></li>
-            <li> <a class="menu_btn" cus_href="/engine/action.htm">配置action</a></li>
-            <li> <a class="menu_btn" cus_href="/engine/apply.htm">应用规则</a></li>
+            <li th:each="menu: ${menus}" class="menu_btn" th:cus_href="${menu.url}" th:text="${menu.value}"></li>
+
+            <!--<li> <a class="menu_btn" cus_href="/engine/readme.htm">hello world</a></li>-->
+            <!--<li> <a class="menu_btn" cus_href="/engine/snippet.htm">编写规则片段</a></li>-->
+            <!--<li> <a class="menu_btn" cus_href="/engine/stage.htm">设置stage</a></li>-->
+            <!--<li> <a class="menu_btn" cus_href="/engine/action.htm">配置action</a></li>-->
+            <!--<li> <a class="menu_btn" cus_href="/engine/apply.htm">应用规则</a></li>-->
         </ol>
     </div>
 
