@@ -2,13 +2,23 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
+    <head>
+        <link type="text/css" rel="stylesheet" th:href="@{/css/common.css}" />
+        <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+    </head>
+    <script th:src="@{/js/sundries.js}"></script>
+
     <script type="text/javascript">
-        function getScriptNum() {
-            var str = $("#groovyScript").text();
-            if(str){
+
+        function getScriptNum(){
+            var str = $("#groovyScript").val();
+            alert(str);
+            if(str.length > 0){
                 str = str.match(/def(\s?)(\S*)\(/)[2];
-            }else{
-                str = "请书写脚本";
+            }
+
+            if(str.length = 0){
+                str = "请书写规范脚本";
             }
             alert(str);
         }
@@ -16,9 +26,13 @@
     </script>
 </head>
 <body>
+
+<div>
     <em>groovy脚本编写</em><br/>
     <textarea id="groovyScript" class="common_textarea"></textarea>
     <br>
     <input id="generateNum" type="button" value="获取编码" onclick="getScriptNum()"><button type="button" class="common_btn">保存</button>
+</div>
+
 </body>
 </html>
