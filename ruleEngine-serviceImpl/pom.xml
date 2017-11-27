@@ -104,6 +104,34 @@
             <artifactId>mybatis-plus</artifactId>
             <version>2.1.6</version>
         </dependency>
+
+
+        <!-- poi sax 解析 excel -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.11.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
