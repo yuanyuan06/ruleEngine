@@ -24,6 +24,29 @@
             }
         }
 
+
+        $(function(){
+            $("#saveSnippet").on("click", function(){
+
+
+                var val = $("#doc_num").val();
+                var val2 = $("#groovyScript").val();
+
+
+                $.post( "/engine/saveScript.htm",
+                        {
+                            "docNum": val,
+                            "groovyScript": val2
+                        },
+                        function(result){
+                            console.log(result.resultCode + ":::" + result.msg)
+                        },
+                        "json"
+                        );
+            });
+        });
+
+
     </script>
 </head>
 <body>
@@ -34,7 +57,9 @@
     <input id="doc_num" class="common_btn" disabled></input> 编码<br>
     <textarea id="groovyScript" class="common_textarea"></textarea>
     <br>
-    <input id="generateNum" type="button" value="获取编码" onclick="getScriptNum()"><button type="button" class="common_btn">保存</button>
+    <input id="generateNum" type="button" value="获取编码" onclick="getScriptNum()">
+    &nbsp;
+    <button type="button" class="common_btn" id="saveSnippet">保存</button>
 </div>
 
 </body>

@@ -127,6 +127,18 @@ public class EngineController {
         return new ModelAndView("readme");
     }
 
+    @RequestMapping("saveScript")
+    @ResponseBody
+    public Map<String, Object> saveScript(String docNum, String groovyScript){
+        System.out.println(docNum + ":::" + groovyScript);
+
+        Map<String, Object> result = new HashMap<String, Object>();
+        result.put("resultCode", "001");
+        result.put("msg", "");
+        return result;
+
+    }
+
 
 
 
