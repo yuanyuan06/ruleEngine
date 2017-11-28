@@ -1,8 +1,10 @@
 package com.engine.controller;
 
 
+import com.engine.service.ruleEngine.RuleConfigService;
 import com.engine.vo.EngineResultVo;
 import com.engine.vo.SnippetVo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +17,8 @@ import java.util.*;
 @RequestMapping("/engine/")
 public class EngineController {
 
+    @Autowired
+    private RuleConfigService ruleConfigService;
 
 
     @ResponseBody
@@ -131,6 +135,8 @@ public class EngineController {
     @RequestMapping("saveScript")
     @ResponseBody
     public Map<String, Object> saveScript(SnippetVo snippetVo){
+
+        ruleConfigService.saveSnippetScript();
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("resultCode", "001");
