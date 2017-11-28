@@ -7,7 +7,7 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
         </Console>
 
-        <RollingRandomAccessFile name="sliceFile" fileName="${LOG_HOME}/${FILE_NAME}.log"
+        <RollingRandomAccessFile name="sliceFile" fileName="web_log/log.log"
                                  filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd HH-mm}-%i.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
             <Policies>
