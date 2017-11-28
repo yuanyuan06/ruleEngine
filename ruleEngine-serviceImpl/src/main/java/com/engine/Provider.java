@@ -18,6 +18,7 @@ public class Provider {
         context = new ClassPathXmlApplicationContext(configPath.split("[,\\s]+"));
         context.start();
         context.start();
+        System.out.println("started");
         System.in.read(); // 按任意键退出
     }
 }

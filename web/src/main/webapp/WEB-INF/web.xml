@@ -34,8 +34,14 @@
     <!-- 指定 Log4J 配置文件的地址	 -->
     <context-param>
         <param-name>log4jConfigLocation</param-name>
-        <param-value>/WEB-INF/log4j.xml</param-value>
+        <param-value>/WEB-INF/log4j2.xml</param-value>
     </context-param>
+
+   <!-- <context-param>
+        <param-name>log4jConfiguration</param-name>
+        <param-value>classpath:/log4j2.xml</param-value>
+    </context-param>-->
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:application.xml</param-value>
@@ -53,27 +59,39 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+
+    <filter>
+        <filter-name>log4jServletFilter</filter-name>
+        <filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>log4jServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+
+    </filter-mapping>
+
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>*.htm</url-pattern>
     </filter-mapping>
-    
+
+
+    <!--置于 ContextLoaderListener 之前-->
+    <listener>
+        <listener-class>org.apache.logging.log4j.web.Log4jServletContextListener</listener-class>
+    </listener>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!-- 使用该监听器初始化 Log4J 日志引擎 -->
-	<listener>
-	    <listener-class>
-	    org.springframework.web.util.Log4jConfigListener
-	    </listener-class>
-	</listener>
 	<!-- Introspector 缓存清除监听器,防止内存泄露 -->
 	<listener>
 	    <listener-class>
 	    org.springframework.web.util.IntrospectorCleanupListener
 	    </listener-class>
 	</listener>
-    
+
     <servlet>
         <servlet-name>spring4</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

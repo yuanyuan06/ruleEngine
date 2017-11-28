@@ -39,10 +39,52 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <dependency>
+   <!--     <dependency>
             <groupId>org.mortbay.jetty</groupId>
             <artifactId>maven-jetty-plugin</artifactId>
             <version>6.1.26</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-web</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-web</artifactId>
+            <version>2.9.1</version>
+            <exclusions>
+                <exclusion>
+                        <groupId>org.apache.logging.log4j</groupId>
+                        <artifactId>log4j-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
         </dependency>
 
 
@@ -70,7 +112,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+          <!--  <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
                 <version>6.1.26</version>
@@ -92,6 +134,18 @@
                         </systemProperty>
                     </systemProperties>
                 </configuration>
+            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <hostName>localhost</hostName>    <!--   Default: localhost -->
+                    <port>8080</port>    <!-- 启动端口 Default:8080 -->
+                    <path>/</path>    <!-- 访问应用路径  Default: /${project.artifactId}-->
+                    <uriEncoding>UTF-8</uriEncoding>      <!-- uri编码 Default: ISO-8859-1 -->
+                </configuration>
             </plugin>
 
         </plugins>
@@ -99,4 +153,4 @@
     </build>
 </project>
 
-        <!-- -Dlog4j.configuration=H:\ideaSpace\ruleEngine\web\src\main\webapp\WEB-INF\log4j.xml-->
+        <!-- -Dlog4j.configuration=H:\ideaSpace\ruleEngine\web\src\main\webapp\WEB-INF\log4j2.xml-->

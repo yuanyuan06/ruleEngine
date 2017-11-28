@@ -30,4 +30,9 @@ public interface RuleConfigService {
 
     Invocable getInvocable();
 
+    /**
+     * 保存脚本片段
+     */
+    void saveSnippetScript();
+
 }

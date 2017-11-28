@@ -8,5 +8,17 @@
                             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
+    <import resource="classpath*:dubbo-consumer.xml"/>
+
+    <bean id="log4jInitializer" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetClass"
+                  value="org.springframework.util.Log4jConfigurer" />
+        <property name="targetMethod" value="initLogging" />
+        <property name="arguments">
+            <list>
+                <value>classpath:conf/log4j.xml</value>
+            </list>
+        </property>
+    </bean>
 
 </beans>

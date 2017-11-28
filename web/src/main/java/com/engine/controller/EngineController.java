@@ -2,6 +2,7 @@ package com.engine.controller;
 
 
 import com.engine.vo.EngineResultVo;
+import com.engine.vo.SnippetVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -129,8 +130,7 @@ public class EngineController {
 
     @RequestMapping("saveScript")
     @ResponseBody
-    public Map<String, Object> saveScript(String docNum, String groovyScript){
-        System.out.println(docNum + ":::" + groovyScript);
+    public Map<String, Object> saveScript(SnippetVo snippetVo){
 
         Map<String, Object> result = new HashMap<String, Object>();
         result.put("resultCode", "001");

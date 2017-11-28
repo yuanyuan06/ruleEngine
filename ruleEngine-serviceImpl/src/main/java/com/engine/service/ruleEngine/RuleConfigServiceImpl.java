@@ -91,4 +91,9 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
     public void afterPropertiesSet() throws Exception {
         initScripts();
     }
+
+    @Override
+    public void saveSnippetScript() {
+        System.out.println("come in");
+    }
 }
