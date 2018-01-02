@@ -84,6 +84,15 @@ public class StopWatchTest {
 
     }
 
+    @Test
+    public void multThreadStopWatchForSpring(){
+//        for(int i = 0 ){
+//
+//        }
+
+
+    }
+
 
 }
 
