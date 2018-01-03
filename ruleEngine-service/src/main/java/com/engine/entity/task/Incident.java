@@ -2,8 +2,6 @@ package com.engine.entity.task;
 
 import com.engine.base.BaseEntity;
 
-import java.util.Date;
-
 /**
  * 事件
  */

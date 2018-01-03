@@ -1,12 +1,9 @@
 package com.concurrent;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.swing.text.DateFormatter;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 

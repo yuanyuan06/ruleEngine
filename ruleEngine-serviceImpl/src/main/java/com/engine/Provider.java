@@ -32,7 +32,7 @@ public class Provider {
 
     public static void main(String[] args) throws Exception {
 
-        initLog4j2();
+//        initLog4j2();
         Main.main(args);
     }
 }

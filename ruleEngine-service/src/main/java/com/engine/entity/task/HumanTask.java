@@ -2,8 +2,6 @@ package com.engine.entity.task;
 
 import com.engine.base.BaseEntity;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class HumanTask extends BaseEntity {

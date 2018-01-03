@@ -1,7 +1,6 @@
 package com.engine.service.task;
 
 import com.engine.entity.task.HumanTask;
-import com.engine.entity.task.Incident;
 
 public interface TaskService {
 

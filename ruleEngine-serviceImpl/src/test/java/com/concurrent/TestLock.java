@@ -2,13 +2,10 @@ package com.concurrent;
 
 import org.junit.Test;
 import sun.misc.Unsafe;
-import sun.misc.VM;
 import sun.reflect.Reflection;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.concurrent.locks.AbstractQueuedSynchronizer;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class TestLock {
 

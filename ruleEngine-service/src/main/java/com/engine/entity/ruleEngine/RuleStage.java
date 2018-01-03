@@ -2,8 +2,6 @@ package com.engine.entity.ruleEngine;
 
 import com.engine.base.BaseEntity;
 
-import java.util.List;
-
 
 /**
  * 表: rule_stage

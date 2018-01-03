@@ -1,7 +1,6 @@
 package com.engine.service.ruleEngine;
 
 import javax.script.Invocable;
-import javax.script.ScriptEngine;
 
 public interface RuleConfigService {
 

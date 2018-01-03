@@ -2,8 +2,6 @@ package com.engine.entity.ruleEngine;
 
 import com.engine.base.BaseEntity;
 
-import java.util.Date;
-
 /**
  * 任务
  * 表: rule_snippet

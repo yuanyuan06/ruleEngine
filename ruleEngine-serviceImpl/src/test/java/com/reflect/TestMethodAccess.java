@@ -8,7 +8,6 @@ import com.esotericsoftware.reflectasm.ConstructorAccess;
 import com.esotericsoftware.reflectasm.MethodAccess;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
-import sun.reflect.MethodAccessor;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.InvocationTargetException;
