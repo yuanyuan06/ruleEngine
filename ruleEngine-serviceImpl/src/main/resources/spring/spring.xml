@@ -57,7 +57,7 @@
     <bean id="resourcePatternResolver" class="org.springframework.core.io.support.PathMatchingResourcePatternResolver" lazy-init="true" />
 
     <import resource="../spring-dubbo-provider.xml"/>
-    <import resource="../spring-redis.xml"/>
+    <import resource="spring-redis.xml"/>
 
 
 
