@@ -2,15 +2,12 @@ package com.engine.entity.task;
 
 import com.engine.base.BaseEntity;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 public class HumanTask extends BaseEntity {
 
     private static final long serialVersionUID = -8125221784293871208L;
 
-    private Long id;								// 主键
     private String docNum;							// 任务编码
     private String name;							// 任务名称
     private String role;							// 角色编码
@@ -22,14 +19,6 @@ public class HumanTask extends BaseEntity {
 
 
     private List<Incident> incidents;               // 包含明细事件
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDocNum() {
         return docNum;

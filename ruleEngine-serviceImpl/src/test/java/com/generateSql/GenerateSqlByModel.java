@@ -1,7 +1,6 @@
 package com.generateSql;
 
 import com.engine.entity.ruleEngine.RuleSnippet;
-import com.engine.entity.task.HumanTask;
 import com.engine.entity.task.Incident;
 import com.google.common.base.CaseFormat;
 import freemarker.template.Configuration;

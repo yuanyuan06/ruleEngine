@@ -1,6 +1,6 @@
 package com.engine;
 
-import com.alibaba.dubbo.common.utils.ConfigUtils;
+import com.alibaba.dubbo.container.Main;
 import org.apache.logging.log4j.core.config.ConfigurationSource;
 import org.apache.logging.log4j.core.config.Configurator;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -32,13 +32,7 @@ public class Provider {
 
     public static void main(String[] args) throws Exception {
 
-        initLog4j2();
-
-        context = new ClassPathXmlApplicationContext(DEFAULT_SPRING_CONFIG);
-        context.start();
-        context.start();
-        System.out.println("dubbo service start successful");
-
-        System.in.read(); // 按任意键退出
+//        initLog4j2();
+        Main.main(args);
     }
 }

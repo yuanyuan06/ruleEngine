@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import javax.script.Invocable;
 import javax.script.ScriptException;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
