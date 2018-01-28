@@ -89,7 +89,7 @@ public class RuleConfigServiceImpl implements RuleConfigService, InitializingBea
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        initScripts();
+//        initScripts();
     }
 
     @Override
