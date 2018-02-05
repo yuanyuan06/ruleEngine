@@ -1,9 +1,14 @@
 package com.common;
 
 import com.alibaba.fastjson.JSON;
+import com.engine.entity.ruleEngine.RuleSnippet;
 import com.engine.entity.task.Incident;
 import com.services.TestService;
 import org.junit.Test;
+
+import javax.net.ssl.SNIHostName;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import java.util.Iterator;
 import java.util.ServiceLoader;
@@ -46,5 +51,13 @@ public class CommonTest {
         while (iterator.hasNext()){
             iterator.next().hello();
         }
+    }
+
+    @Test
+    public void testCons() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+
+        Constructor<RuleSnippet> constructor = RuleSnippet.class.getConstructor();
+        RuleSnippet snippet = constructor.newInstance("33", "22","11");
+        System.out.println(snippet);
     }
 }
