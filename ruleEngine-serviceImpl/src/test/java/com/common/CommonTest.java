@@ -2,7 +2,11 @@ package com.common;
 
 import com.alibaba.fastjson.JSON;
 import com.engine.entity.task.Incident;
+import com.services.TestService;
 import org.junit.Test;
+
+import java.util.Iterator;
+import java.util.ServiceLoader;
 
 public class CommonTest {
 
@@ -32,5 +36,15 @@ public class CommonTest {
         incident.setDocNum("hh");
         String s = JSON.toJSONString(incident);
         System.out.println(s);
+    }
+
+    @Test
+    public void tet(){
+        ServiceLoader<TestService> ss = ServiceLoader.load(TestService.class);
+        Iterator<TestService> iterator = ss.iterator();
+
+        while (iterator.hasNext()){
+            iterator.next().hello();
+        }
     }
 }

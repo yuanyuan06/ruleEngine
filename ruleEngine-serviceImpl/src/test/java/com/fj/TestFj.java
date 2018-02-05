@@ -1,5 +1,6 @@
 package com.fj;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class TestFj {
         List<Integer> list = new ArrayList<>();
 
         int realSum = 0;
-       for(int i = 0; i < 1000; i++){
+       for(int i = 0; i < 10; i++){
            list.add(i);
            realSum += i;
        }
@@ -54,7 +55,7 @@ class FjTask extends  RecursiveTask<Integer>{
                 sum += integer;
             }
         }
-        System.out.println(Thread.currentThread().getId() + "::" + sum);
+        System.out.println(Thread.currentThread().getId() + "::" + sum + JSON.toJSONString(task));
         return sum;
     }
 

@@ -88,7 +88,7 @@ public class EngineServiceImpl implements EngineService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        cacheStage();
+//        cacheStage();
     }
 
 
