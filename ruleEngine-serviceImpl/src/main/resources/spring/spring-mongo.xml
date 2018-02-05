@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:mongo="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd"
+	   default-autowire="byName">
+
+	<mongo:mongo-client id="msgMongo" replica-set="${msg.replica.set}"
+						credentials="${msg.mongodb.username}:${msg.mongodb.password}@${msg.database.store}">
+		<mongo:client-options
+				connections-per-host="${msg.connections.per.host}"
+				threads-allowed-to-block-for-connection-multiplier="${msg.threads.allowed.multiplier}"
+				connect-timeout="${msg.connect.timeout}"
+				max-wait-time="${msg.max.wait.time}"
+				socket-keep-alive="${msg.socket.keep.alive}"
+				socket-timeout="${msg.socket.timeout}"
+				write-concern="${msg.write.concern}"/>
+	</mongo:mongo-client>
+
+	<bean id="mongoDbFactory" class="org.springframework.data.mongodb.core.SimpleMongoDbFactory">
+		<constructor-arg ref="msgMongo"/>
+		<constructor-arg value="${msg.database.store}"/>
+	</bean>
+
+	<!-- mongodb的主要操作对象，所有对mongodb的增删改查的操作都是通过它完成 -->
+	<bean id="msgMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
+	</bean>
+
+</beans>
