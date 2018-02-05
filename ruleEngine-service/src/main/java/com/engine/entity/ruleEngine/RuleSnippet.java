@@ -48,4 +48,14 @@ public class RuleSnippet extends BaseEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+
+    public RuleSnippet(String docNum, String script, String description) {
+        this.docNum = docNum;
+        this.script = script;
+        this.description = description;
+    }
+
+    public RuleSnippet() {
+    }
 }
